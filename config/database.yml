@@ -22,4 +22,8 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
+  cable:
+    <<: *primary_production
+    database: my_academy_quest_002_production_cable
+    migrations_paths: db/cable_migrate
 
