@@ -1,0 +1,15 @@
+<%= turbo_stream.remove "quest_#{@quest.id}" %>
+
+<%= turbo_stream.update "quest-count" do %>
+  <%= render "quest_count" %>
+<% end %>
+
+<% if @quests.empty? %>
+  <%= turbo_stream.append "quest-list" do %>
+    <div class="empty-state" id="empty-state">
+      
+      <h3>No quests yet!</h3>
+      <p>Add your first quest above to get started</p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,7 @@
+<% if @quests.any? %>
+  <%= @quests.count %> quest<%= 's' if @quests.count != 1 %> 
+  <span class="separator">•</span>
+  <%= @quests.where(done: true).count %> completed
+<% else %>
+  Ready to start your quest journey!
+<% end %>

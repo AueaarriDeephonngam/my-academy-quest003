@@ -1,0 +1,29 @@
+<% if @quests.any? %>
+  <% @quests.each do |quest| %>
+    <div class="quest-item <%= 'completed' if quest.done %>" id="quest_<%= quest.id %>">
+      <%= form_with model: quest, url: toggle_quest_path(quest), method: :patch, local: false, class: "quest-form-inline", data: { turbo: true } do |form| %>
+        <label class="quest-checkbox">
+          <input type="checkbox" <%= 'checked' if quest.done %> onchange="this.form.submit();">
+          <span class="checkmark"></span>
+        </label>
+      <% end %>
+      
+      <span class="quest-title <%= 'line-through' if quest.done %>">
+        <%= quest.title %>
+      </span>
+      
+      <%= link_to quest_path(quest), 
+                  data: { turbo_method: :delete, turbo: true }, 
+                  class: "delete-btn",
+                  title: "Delete quest" do %>
+        <i class="fas fa-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="empty-state" id="empty-state">
+    
+    <h3>No quests yet!</h3>
+    <p>Add your first quest above to get started</p>
+  </div>
+<% end %>
