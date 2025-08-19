@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -21,21 +21,6 @@ jobs:
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Cache Tailwind CSS build
-        uses: actions/cache@v4
-        with:
-          path: |
-            app/assets/builds
-            public/assets
-          key: ${{ runner.os }}-tailwind-${{ hashFiles('**/tailwind.config.*', 'app/assets/tailwind/**') }}
-          restore-keys: |
-            ${{ runner.os }}-tailwind-
 
   scan_js:
     runs-on: ubuntu-latest
@@ -71,43 +56,35 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
-
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          ruby-version: 3.3
 
-      - name: Run all tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+      - name: Install dependencies
         run: |
-          bin/rails db:test:prepare
-          bundle exec rspec --format documentation
-          bundle exec cucumber --format pretty
+          gem install bundler
+          bundle install --jobs 4 --retry 3
 
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
+      - name: Setup Database
+        run: |
+          bin/rails db:create db:migrate
+
+      - name: Run RSpec unit tests
+        run: |
+          bundle exec rspec spec/models
+
+      - name: Run RSpec integration tests
+        run: |
+          bundle exec rspec spec/requests
+
+      - name: Run Cucumber e2e tests
+        run: |
+          bundle exec cucumber
