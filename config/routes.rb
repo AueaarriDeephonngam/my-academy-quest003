@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "brag_documents/show"
   root 'quests#index'
   
   resources :quests, only: [:index, :create, :destroy] do

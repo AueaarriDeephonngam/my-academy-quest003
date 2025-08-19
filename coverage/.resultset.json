@@ -10,6 +10,15 @@
         ],
         "branches": {}
       },
+      "/Users/lajibolala/Documents/my-academy-quest-003/app/controllers/brag_documents_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/Users/lajibolala/Documents/my-academy-quest-003/app/controllers/quests_controller.rb": {
         "lines": [
           0,
@@ -18,10 +27,51 @@
           null,
           0,
           0,
+          0,
           null,
           0,
           0,
           null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
           0,
           0,
           0
@@ -29,6 +79,13 @@
         "branches": {}
       },
       "/Users/lajibolala/Documents/my-academy-quest-003/app/helpers/application_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/lajibolala/Documents/my-academy-quest-003/app/helpers/brag_documents_helper.rb": {
         "lines": [
           0,
           0
@@ -79,6 +136,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1755627301
+    "timestamp": 1755628820
   }
 }
