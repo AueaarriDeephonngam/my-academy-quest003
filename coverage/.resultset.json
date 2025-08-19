@@ -10,7 +10,32 @@
         ],
         "branches": {}
       },
+      "/Users/lajibolala/Documents/my-academy-quest-003/app/controllers/quests_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/Users/lajibolala/Documents/my-academy-quest-003/app/helpers/application_helper.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/Users/lajibolala/Documents/my-academy-quest-003/app/helpers/quests_helper.rb": {
         "lines": [
           0,
           0
@@ -45,8 +70,15 @@
           0
         ],
         "branches": {}
+      },
+      "/Users/lajibolala/Documents/my-academy-quest-003/app/models/quest.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {}
       }
     },
-    "timestamp": 1755625689
+    "timestamp": 1755627301
   }
 }
