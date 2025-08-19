@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Quests", type: :request do
   before(:each) do
-    Quest.delete_all 
+    Quest.delete_all
   end
 
   let(:valid_attributes) {
@@ -196,7 +196,7 @@ RSpec.describe "Quests", type: :request do
     it "displays quests in descending order (newest first)" do
       get quests_path
 
-     
+
       newer_position = response.body.index("Newer quest")
       older_position = response.body.index("Older quest")
 
@@ -214,11 +214,11 @@ RSpec.describe "Quests", type: :request do
       patch toggle_quest_path(quest1)
       expect(quest1.reload.done).to be true
 
-     
+
       patch toggle_quest_path(quest3)
       expect(quest3.reload.done).to be false
 
-      
+
       expect(quest2.reload.done).to be false
     end
 

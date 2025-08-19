@@ -11,7 +11,7 @@ RSpec.describe QuestsController, type: :controller do
 
   describe "GET #index" do
     before(:each) do
-      Quest.delete_all  
+      Quest.delete_all
     end
 
     it "returns a success response" do
@@ -200,7 +200,7 @@ RSpec.describe QuestsController, type: :controller do
 
     describe "#load_quests" do
       before(:each) do
-        Quest.delete_all  
+        Quest.delete_all
       end
 
       let!(:quest1) { Quest.create!(title: "First", created_at: 2.hours.ago) }

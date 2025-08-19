@@ -120,6 +120,5 @@ RSpec.describe Quest, type: :model do
       quest = Quest.create!(title: special_title)
       expect(quest.title).to eq(special_title)
     end
-
   end
 end

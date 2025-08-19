@@ -69,7 +69,7 @@ end
 
 Given('I have a quest titled {string}') do |title|
   Quest.create!(title: title, done: false)
-  visit current_path if current_path == quests_path 
+  visit current_path if current_path == quests_path
 end
 
 Given('I have a completed quest titled {string}') do |title|
@@ -109,10 +109,9 @@ end
 When('I check the checkbox for {string}') do |quest_title|
   quest_item = find('.quest-item', text: quest_title)
   within(quest_item) do
-   
     checkbox_label = find('.quest-checkbox')
     checkbox_label.click
-   
+
     sleep 1
   end
 end
@@ -120,10 +119,9 @@ end
 When('I uncheck the checkbox for {string}') do |quest_title|
   quest_item = find('.quest-item', text: quest_title)
   within(quest_item) do
-   
     checkbox_label = find('.quest-checkbox')
     checkbox_label.click
-   
+
     sleep 1
   end
 end
@@ -131,14 +129,12 @@ end
 When('I click the delete button for {string}') do |quest_title|
   quest_item = find('.quest-item', text: quest_title)
   within(quest_item) do
-  
     find('.delete-btn', visible: false).click
   end
 end
 
 
 Then('the quest {string} should be marked as completed') do |quest_title|
- 
   sleep 1
   quest_item = find('.quest-item', text: quest_title)
   within(quest_item) do
@@ -160,7 +156,6 @@ end
 Then('the quest {string} should be marked as incomplete') do |quest_title|
   quest_item = find('.quest-item', text: quest_title)
   within(quest_item) do
-  
     expect(find('input[type="checkbox"]', visible: false)).not_to be_checked
     expect(quest_item).not_to have_css('.completed')
   end
@@ -201,18 +196,17 @@ Then('the quest form should be cleared') do
 end
 
 Then('the page should not have refreshed') do
- 
   expect(page).to have_current_path(quests_path, ignore_query: true)
 end
 
 Then('the quest {string} should be visually marked as completed immediately') do |quest_title|
-  sleep 1 
+  sleep 1
   quest_item = find('.quest-item', text: quest_title)
- 
+
   within(quest_item) do
     expect(find('input[type="checkbox"]', visible: false)).to be_checked
   end
-  
+
   quest = Quest.find_by(title: quest_title)
   expect(quest.done).to be true
 end
@@ -222,7 +216,6 @@ Then('the quest {string} should disappear immediately') do |quest_title|
 end
 
 Then('the quest count should update immediately') do
- 
   expect(page).to have_selector('#quest-count')
 end
 
