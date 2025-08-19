@@ -1,10 +1,781 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+body:not(.brag-page) {
+  padding: 20px;
+}
+
+body.brag-page {
+  padding: 0;
+  margin: 0;
+}
+
+/* Brag Button */
+.brag-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(102, 126, 234, 0.8);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.brag-btn:hover {
+  background: rgba(102, 126, 234, 0.9);
+  transform: translateY(-2px);
+  color: white;
+  text-decoration: none;
+}
+
+/* Main Quest App Container */
+.quest-app-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: calc(100vh - 40px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.quest-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 40px 40px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.profile-section {
+  text-align: center;
+}
+
+.profile-section h1 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background-clip: text;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: 4px solid white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quest-count {
+  color: #6c757d;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.quest-count .separator {
+  margin: 0 10px;
+  opacity: 0.5;
+}
+/* Add Quest Section */
+.add-quest-section {
+  padding: 30px 40px;
+  background: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.add-quest-form .input-group {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 30px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.add-quest-form .input-group:focus-within {
+  border-color: #667eea;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+}
+
+.add-quest-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 15px 20px;
+  outline: none;
+  font-size: 18px;
+  color: #2d3748;
+}
+
+.add-quest-input::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.add-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+/* Quest List */
+.quest-list {
+  padding: 40px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.quest-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.quest-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.quest-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.quest-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.quest-item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #f1f1f1;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.quest-item:last-child {
+  border-bottom: none;
+}
+
+.quest-item:hover {
+  background: rgba(102, 126, 234, 0.02);
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.quest-item.completed {
+  opacity: 0.6;
+}
+
+/* Custom Checkbox */
+.quest-checkbox {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.quest-checkbox input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.checkmark {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.checkmark::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 8px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quest-checkbox input[type="checkbox"]:checked + .checkmark {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: #667eea;
+}
+
+.quest-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  opacity: 1;
+}
+
+.quest-checkbox:hover .checkmark {
+  border-color: #667eea;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
+}
+
+/* Quest Title */
+.quest-title {
+  flex: 1;
+  font-size: 18px;
+  color: #2d3748;
+  font-weight: 500;
+  word-break: break-word;
+  transition: all 0.3s ease;
+}
+
+.quest-title.line-through {
+  text-decoration: line-through;
+  color: #a0aec0;
+}
+
+/* Delete Button */
+.delete-btn {
+  color: #e53e3e;
+  text-decoration: none;
+  font-size: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quest-item:hover .delete-btn {
+  opacity: 0.7;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  background: rgba(229, 62, 62, 0.1);
+  color: #c53030;
+  transform: scale(1.1);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #a0aec0;
+}
+
+.empty-state i {
+  font-size: 64px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #a0aec0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  .quest-app-container {
+    padding: 20px 15px;
+    align-items: flex-start;
+    min-height: calc(100vh - 30px);
+  }
+  
+  .quest-card {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+  
+  .brag-btn {
+    position: static;
+    display: block;
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .header {
+    padding: 30px 25px 25px;
+  }
+  
+  .profile-section h1 {
+    font-size: 28px;
+  }
+  
+  .profile-image {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .add-quest-section {
+    padding: 25px;
+  }
+  
+  .add-quest-input {
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+  
+  .add-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
+  .quest-list {
+    padding: 25px;
+    max-height: 400px;
+  }
+  
+  .quest-item {
+    padding: 16px 0;
+    gap: 16px;
+  }
+  
+  .quest-title {
+    font-size: 16px;
+  }
+  
+  .checkmark {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .empty-state {
+    padding: 50px 20px;
+  }
+  
+  .empty-state i {
+    font-size: 56px;
+  }
+  
+  .empty-state h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .quest-app-container {
+    padding: 15px 10px;
+    align-items: flex-start;
+    min-height: calc(100vh - 20px);
+  }
+  
+  .header {
+    padding: 25px 20px;
+  }
+  
+  .profile-section h1 {
+    font-size: 24px;
+  }
+  
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .quest-count {
+    font-size: 14px;
+  }
+  
+  .add-quest-section {
+    padding: 20px;
+  }
+  
+  .add-quest-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 10px 14px;
+  }
+  
+  .add-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .quest-list {
+    padding: 20px;
+    max-height: 350px;
+  }
+  
+  .quest-item {
+    padding: 14px 0;
+    gap: 14px;
+  }
+  
+  .quest-title {
+    font-size: 15px;
+  }
+  
+  .checkmark {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .delete-btn {
+    font-size: 18px;
+    padding: 8px;
+  }
+  
+  .empty-state {
+    padding: 40px 15px;
+  }
+  
+  .empty-state i {
+    font-size: 48px;
+  }
+  
+  .empty-state h3 {
+    font-size: 20px;
+  }
+  
+  .empty-state p {
+    font-size: 15px;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .quest-app-container {
+    padding: 40px 30px;
+    align-items: center;
+  }
+  
+  .quest-card {
+    max-width: 500px;
+  }
+  
+  .brag-document {
+    max-width: 100%;
+  }
+  
+  .brag-content {
+    padding: 30px 25px;
+    max-width: 100%;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .quest-app-container {
+    padding: 60px 20px;
+    align-items: center;
+  }
+  
+  .quest-card {
+    max-width: 650px;
+  }
+  
+  .brag-document {
+    max-width: 100%;
+  }
+  
+  .brag-content {
+    padding: 50px 40px;
+    max-width: 100%;
+  }
+  
+  .header {
+    padding: 50px 50px 40px;
+  }
+  
+  .profile-section h1 {
+    font-size: 36px;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .quest-count {
+    font-size: 18px;
+  }
+  
+  .add-quest-section {
+    padding: 40px 50px;
+  }
+  
+  .add-quest-input {
+    font-size: 20px;
+    padding: 18px 24px;
+  }
+  
+  .add-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+  
+  .quest-list {
+    padding: 50px;
+    max-height: 600px;
+  }
+  
+  .quest-item {
+    padding: 22px 0;
+    gap: 22px;
+  }
+  
+  .quest-title {
+    font-size: 20px;
+  }
+  
+  .checkmark {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .checkmark::after {
+    left: 9px;
+    top: 5px;
+    width: 9px;
+    height: 14px;
+  }
+  
+  .delete-btn {
+    font-size: 22px;
+    padding: 12px;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .quest-app-container {
+    padding: 80px 40px;
+  }
+  
+  .brag-content {
+    padding: 60px 50px;
+    max-width: 100%;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.quest-item {
+  animation: slideIn 0.3s ease-out;
+}
+
+.quest-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Focus states for accessibility */
+.add-quest-input:focus {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.quest-checkbox input[type="checkbox"]:focus + .checkmark {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.delete-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  }
+  
+  .quest-card {
+    background: #2d3748;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  }
+  
+  .profile-section h1 {
+    color: white;
+  }
+  
+  .quest-count {
+    color: #a0aec0;
+  }
+  
+  .add-quest-section {
+    background: #4a5568;
+  }
+  
+  .add-quest-form .input-group {
+    background: #1a202c;
+    border-color: #4a5568;
+  }
+  
+  .add-quest-input {
+    color: white;
+  }
+  
+  .add-quest-input::placeholder {
+    color: #718096;
+  }
+  
+  .quest-title {
+    color: white;
+  }
+  
+  .quest-title.line-through {
+    color: #718096;
+  }
+  
+  .checkmark {
+    background: #4a5568;
+    border-color: #718096;
+  }
+  
+  .quest-item {
+    border-bottom-color: #4a5568;
+  }
+  
+  .quest-item:hover {
+    background: rgba(102, 126, 234, 0.05);
+  }
+  
+  .empty-state h3 {
+    color: #e2e8f0;
+  }
+  
+  .empty-state p {
+    color: #a0aec0;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .brag-btn {
+    display: none;
+  }
+  
+  .quest-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .add-quest-section {
+    display: none;
+  }
+  
+  .delete-btn {
+    display: none;
+  }
+}
