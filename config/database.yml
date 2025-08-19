@@ -23,6 +23,10 @@ default: &default
 development:
   <<: *default
   database: my_academy_quest_003_development
+  username: aueaarri
+  password: jm131038                
+  host: 127.0.0.1
+  port: 5432
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -79,20 +83,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
-    <<: *default
-    database: my_academy_quest_003_production
-    username: my_academy_quest_003
-    password: <%= ENV["MY_ACADEMY_QUEST_003_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: my_academy_quest_003_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: my_academy_quest_003_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: my_academy_quest_003_production_cable
-    migrations_paths: db/cable_migrate
+  # ใช้ DATABASE_URL ที่ Render ให้มา (จะเป็นรูปแบบ postgres://...?...sslmode=require)
+  url: <%= ENV["postgresql://my_academy_003_user:YSe9fEn2oB7jF2YlClHTL3vYcUWxeb64@dpg-d2ia3ummcj7s73e5cn60-a/my_academy_003"] %>
+  # กันพลาดเรื่อง SSL ถ้าต่อผ่าน URL อาจไม่ต้องตั้ง แต่เผื่อไว้ได้
+  variables:
+    sslmode: require
