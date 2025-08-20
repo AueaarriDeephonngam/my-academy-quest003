@@ -22,18 +22,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: my_academy_quest_002_production
-    username: my_academy_quest_002
-    password: <%= ENV["MY_ACADEMY_QUEST_002_DATABASE_PASSWORD"] %>
+    database: my_academy_quest_003_production
+    username: my_academy_quest_003
+    password: <%= ENV["MY_ACADEMY_QUEST_003_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: my_academy_quest_002_production_cache
+    database: my_academy_quest_003_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: my_academy_quest_002_production_queue
+    database: my_academy_quest_003_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: my_academy_quest_002_production_cable
+    database: my_academy_quest_003_production_cable
     migrations_paths: db/cable_migrate
